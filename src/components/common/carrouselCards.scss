@@ -1,0 +1,50 @@
+.carrousel-container {
+	overflow: hidden;
+	margin: 40px;
+
+	&.expanded {
+		height: 1200px;
+	}
+}
+.icon {
+	color: #2196f3;
+	margin: 0 10px;
+}
+.title,
+.subtitle {
+	color: white;
+	font-weight: 100;
+	text-decoration: none;
+	cursor: pointer;
+}
+.title {
+	font-size: 20px;
+}
+.subtitle {
+	margin-top: 10px;
+	font-size: 14px;
+}
+.grid-card {
+	cursor: pointer;
+	height: 270px;
+	width: 180px;
+	background-position-x: center;
+	transition: all 0.3s ease-in-out;
+	background-size: 180px;
+	&:hover {
+		background-size: 205px;
+		background-position-x: center;
+		transition: all 0.3s ease-in-out;
+	}
+}
+
+.gridWithPages-container {
+	margin: 40px 0;
+}
+
+.grid {
+	width: 945px;
+	border-spacing: 10px;
+	border-collapse: separate;
+	text-align: left;
+}
