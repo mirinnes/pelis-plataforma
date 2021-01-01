@@ -7,7 +7,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import "./carrouselCards.scss";
 
 export default function CarrouselCards({ cardsTitle, pagePath, data }) {
-	console.log("la data q llega", data);
+	console.log("la data q llega en CarrouselCards", data);
 	return (
 		<div className={`carrousel-container`}>
 			<Link className='title' to={`/movie/${pagePath}/page/1`}>

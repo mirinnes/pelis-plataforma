@@ -2,54 +2,67 @@ import React, { useReducer } from "react";
 import axios from "axios";
 import ApiContext from "./apiContext";
 import ApiReducer from "./apiReducer";
-import { GET_POPULAR_MOVIES, SET_LOADING } from "../Types";
-
-// let ApiClientId;
-// let ApiClientSecret;
-
-// Check de environment
-// if (process.env.NODE_ENV !== "production") {
-// 	ApiClientId = process.env.REACT_APP_Api_CLIENT_ID;
-// 	ApiClientSecret = process.env.REACT_APP_Api_CLIENT_SECRET;
-// } else {
-// 	ApiClientId = process.env.Api_CLIENT_ID;
-// 	ApiClientSecret = process.env.Api_CLIENT_SECRET;
-// }
+import {
+	MOVIES_TRENDING_SET,
+	SERIES_TRENDING_SET,
+	SET_LOADING,
+} from "../Types";
 
 const ApiState = ({ children }) => {
 	const initialState = {
-		data: undefined,
-		selected: {},
+		trendingMovies: undefined,
+		trendingSeries: undefined,
+		dataMovies: undefined,
+		dataTv: undefined,
+		selected: undefined,
 		loading: false,
 		messages: "Hola soy un mensaje",
 	};
 
 	const [state, dispatch] = useReducer(ApiReducer, initialState);
 
-	// Get Popular Movies
-	const getPopularMovies = async () => {
+	// Get Trending {media_type}
+	const getTrending = async (media_type, dispatch_type) => {
 		setLoading();
-		const res = await axios.get(
-			`https://api.themoviedb.org/3/movie/popular?api_key=967bd57c74714dc1023372ea38d75e43&page=1`
+		console.log(
+			"Iniciando llamada a la api para ",
+			media_type,
+			"y con el dispatch type",
+			dispatch_type
 		);
-		console.log("La data es", res.data);
-		dispatch({
-			type: GET_POPULAR_MOVIES,
-			payload: res.data,
-		});
+		const res = await axios.get(
+			`https://api.themoviedb.org/3/trending/${media_type}/week?api_key=967bd57c74714dc1023372ea38d75e43`
+		);
+		console.log("La API respondio en getTrending:", media_type, res.data);
+		dispatchData(dispatch_type, res.data);
 	};
 
+	// Dispatch data {type}
+	const dispatchData = (type, data) => {
+		setLoading();
+		console.log("Despachando DATA en dispatchData", type, data);
+		dispatch({
+			type,
+			payload: data,
+		});
+	};
 	// Set Loading
 	const setLoading = () => dispatch({ type: SET_LOADING });
 
 	return (
 		<ApiContext.Provider
 			value={{
-				data: state.data,
+				trendingMovies: state.trendingMovies,
+				trendingSeries: state.trendingSeries,
+				dataMovies: state.dataMovies,
+				dataTv: state.dataTv,
 				selected: state.selected,
 				loading: state.loading,
 				messages: state.messages,
-				getPopularMovies,
+				MOVIES_TRENDING_SET,
+				SERIES_TRENDING_SET,
+				getTrending,
+				dispatchData,
 			}}
 		>
 			{children}

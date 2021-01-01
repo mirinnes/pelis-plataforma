@@ -5,27 +5,50 @@ import GridWithPages from "./components/common/GridWithPages";
 import SingleMovie from "./components/pages/SingleMovie";
 import PopularMovies from "./components/layout/PopularMovies";
 import BestCritic from "./components/layout/BestCritic";
+import Tendency from "./components/layout/Tendency";
 import ApiContext from "./components/context/apiContext";
 
 import "./App.scss";
 
 function App() {
-	const { getPopularMovies, data } = useContext(ApiContext);
+	const {
+		trendingMovies,
+		trendingSeries,
+		dataMovies,
+		dataTv,
+		SERIES_TRENDING_SET,
+		MOVIES_TRENDING_SET,
+		getTrending,
+	} = useContext(ApiContext);
+
 	useEffect(() => {
-		getPopularMovies();
+		getTrending("movie", MOVIES_TRENDING_SET);
+		getTrending("tv", SERIES_TRENDING_SET);
 	}, []);
 	return (
 		<Router>
 			<section className='main-section'>
 				<Switch>
 					<Route exact path='/'>
-						<PopularMovies data={data} />
-						<BestCritic data={data} />
+						<Tendency
+							data={trendingMovies}
+							pagePath='trending/movie'
+							title={"Peliculas que son tendencia"}
+						/>
+						<Tendency
+							data={trendingSeries}
+							pagePath='trending/tv'
+							title={"Series que son tendencia"}
+						/>
+					</Route>
+					<Route exact path='/movie'>
+						<PopularMovies data={dataMovies} />
+						<BestCritic data={dataMovies} />
 
 						<CarrouselCards
 							cardsTitle='Peliculas a estrenarse'
 							pagePath='upcoming'
-							data={data}
+							data={dataMovies}
 						/>
 					</Route>
 
