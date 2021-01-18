@@ -3,7 +3,7 @@ import {
 	MOVIES_TRENDING_SET,
 	SERIES_TRENDING_SET,
 	SET_LOADING,
-} from "/dev/AdaTps/TP-React-PeliPlataforma/src/components/Types";
+} from "../components/Types";
 
 export default (state, action) => {
 	switch (action.type) {
