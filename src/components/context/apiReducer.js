@@ -3,7 +3,7 @@ import {
 	MOVIES_TRENDING_SET,
 	SERIES_TRENDING_SET,
 	SET_LOADING,
-} from "../components/Types";
+} from "../Types";
 
 export default (state, action) => {
 	switch (action.type) {
