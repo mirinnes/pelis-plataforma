@@ -1,6 +1,6 @@
 # Movie & Series App
 
-Developing an app by fetching The Movie.db Api
+Developing an app by fetching The Movie.db API
 
 Site Overview :
 
