@@ -18,11 +18,17 @@ function App() {
 		getTrending,
 		dataTv,
 	} = useContext(ApiContext);
-
-	useEffect(() => {
+	
+	const fetchData = () => {
 		getTrending("movie", MOVIES_TRENDING_SET);
 		getTrending("tv", SERIES_TRENDING_SET);
-	}, [MOVIES_TRENDING_SET, SERIES_TRENDING_SET, getTrending]);
+	}
+
+	useEffect(() => {
+		fetchData();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
+
 	return (
 		<Router>
 			<Header />

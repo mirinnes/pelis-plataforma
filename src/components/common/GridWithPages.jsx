@@ -9,9 +9,6 @@ import CardItem from "./CardItem";
 import "./carrouselCards.scss";
 
 export default function GridWithPages({ pageTitle, data }) {
-	console.log("la data q llega en GridWithPages", data);
-	if (data) console.log("la data q llega en GridWithPages", data.results[0]);
-
 	return (
 		<div className='gridWithPages-container'>
 			<Link className='title' to={`/`}>
@@ -21,7 +18,7 @@ export default function GridWithPages({ pageTitle, data }) {
 				</h1>
 			</Link>
 			{data && (
-				<table class={`grid`}>
+				<table className={`grid`}>
 					<thead>
 						<tr>
 							<th>
