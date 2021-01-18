@@ -13,7 +13,7 @@ export default function Header() {
 			<FontAwesomeIcon className='icon' icon={faHome} />
 			<FontAwesomeIcon className='icon' icon={faVideo} />
 			<FontAwesomeIcon className='icon' icon={faTv} />
-			<label for='search' className='search'>
+			<label  className='search'>
 				<FontAwesomeIcon className='icon' icon={faSearch} />
 				<input
 					placeholder='Búsqueda...'

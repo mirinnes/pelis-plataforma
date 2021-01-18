@@ -22,7 +22,7 @@ function App() {
 	useEffect(() => {
 		getTrending("movie", MOVIES_TRENDING_SET);
 		getTrending("tv", SERIES_TRENDING_SET);
-	});
+	}, []);
 	return (
 		<Router>
 			<Header />
