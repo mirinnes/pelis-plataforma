@@ -21,31 +21,24 @@ const ApiState = ({ children }) => {
 
 	const [state, dispatch] = useReducer(ApiReducer, initialState);
 
-	// Get Trending {media_type}
+	// Get Trending {media_type, dispatch_type}
 	const getTrending = async (media_type, dispatch_type) => {
 		setLoading();
-		console.log(
-			"Iniciando llamada a la api para ",
-			media_type,
-			"y con el dispatch type",
-			dispatch_type
-		);
 		const res = await axios.get(
 			`https://api.themoviedb.org/3/trending/${media_type}/week?api_key=967bd57c74714dc1023372ea38d75e43`
 		);
-		console.log("La API respondio en getTrending:", media_type, res.data);
 		dispatchData(dispatch_type, res.data);
 	};
 
-	// Dispatch data {type}
+	// Dispatch data {type, data}
 	const dispatchData = (type, data) => {
 		setLoading();
-		console.log("Despachando DATA en dispatchData", type, data);
 		dispatch({
 			type,
 			payload: data,
 		});
 	};
+
 	// Set Loading
 	const setLoading = () => dispatch({ type: SET_LOADING });
 
